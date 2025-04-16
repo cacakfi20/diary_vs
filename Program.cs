@@ -8,11 +8,16 @@ class Program
 {
     static void Main()
     {
+        // Inicializace služeb pro autentizaci a práci s deníkem
         IAuthService authService = new AuthService();
         IDiaryService diaryService = new DiaryService();
 
         string? loggedInUser = null;
+
+        // Nastavení výstupu na UTF-8 pro podporu emoji
         Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        // První loop – přihlašovací obrazovka, dokud se někdo nepřihlásí, nezaregistruje nebo neodejde
         while (loggedInUser == null)
         {
             Console.WriteLine("\n🔒 Diary App - Authentication");
@@ -24,11 +29,13 @@ class Program
             var choice = Console.ReadLine();
             switch (choice)
             {
-                case "1":
+                case "1": // Registrace
                     Console.Write("Enter username: ");
                     string? newUsername = Console.ReadLine();
                     Console.Write("Enter password: ");
                     string? newPassword = Console.ReadLine();
+
+                    // Kontrola prázdných vstupů a pokus o registraci
                     if (newUsername != null && newPassword != null && newUsername.Trim() != "" && newPassword.Trim() != "" && authService.Register(newUsername, newPassword))
                     {
                         loggedInUser = newUsername;
@@ -40,16 +47,20 @@ class Program
                     }
                     break;
 
-                case "2":
+                case "2": // Přihlášení
                     Console.Write("Enter username: ");
                     string? username = Console.ReadLine();
                     Console.Write("Enter password: ");
                     string? password = Console.ReadLine();
+
+                    // Kontrola prázdných vstupů a pokus o přihlášení
                     if (username == null || password == null || username.Trim() == "" || password.Trim() == "")
                     {
                         Console.WriteLine("Username or password cannot be empty.");
                         break;
                     }
+
+                    // Přihlášení uživatele
                     string loginRes = authService.Login(username, password);
                     if (loginRes != "0")
                     {
@@ -64,7 +75,7 @@ class Program
                     }
                     break;
 
-                case "3":
+                case "3": // Konec aplikace
                     return;
 
                 default:
@@ -73,6 +84,7 @@ class Program
             }
         }
 
+        // Hlavní menu po přihlášení
         while (true)
         {
             Console.WriteLine("\n📖 Diary App - Welcome, " + loggedInUser);
@@ -87,9 +99,12 @@ class Program
             var choice = Console.ReadLine();
             switch (choice)
             {
-                case "1":
+                case "1": // Přidání nové události
                     Console.Write("Date: ");
+                    // Pokud není datum validní zvolí se dnešní datum
                     string date = Console.ReadLine() ?? DateTime.Now.ToString("yyyy-MM-dd");
+
+                    // Validace data
                     if (!DateTime.TryParse(date, out DateTime entryDate))
                     {
                         Console.WriteLine("Invalid date format. Using current date.");
@@ -105,13 +120,14 @@ class Program
                         Console.WriteLine("Title and content cannot be empty.");
                         break;
                     }
+                    // Uložení záznamu
                     diaryService.AddEntry(new DiaryEntry {User = loggedInUser, Date = entryDate, Title = title, Description = content });
                     Console.WriteLine("✅ Entry added.");
                     diaryService.ShowFooter();
                     Console.Clear();
                     break;
                 
-                case "2":
+                case "2": // Zobrazení všech záznamů
                     var entries = diaryService.GetAllEntriesByUser(loggedInUser);
                     if (entries.Count == 0)
                     {
@@ -129,7 +145,7 @@ class Program
                     Console.Clear();
                     break;
                 
-                case "3":
+                case "3": // Zobrazení záznamů seřazených podle data
                     var sortedEntries = diaryService.GetEntriesByDate(loggedInUser);
                     if (sortedEntries.Count == 0)
                     {
@@ -147,7 +163,7 @@ class Program
                     Console.Clear();
                     break;
 
-                case "4":
+                case "4": // Smazání záznamu podle ID
                     var entriesToDelete = diaryService.GetAllEntriesByUser(loggedInUser);
                     if (entriesToDelete.Count == 0)
                     {
@@ -173,7 +189,7 @@ class Program
                     }
                     break;
 
-                case "5":
+                case "5": // Vyhledání záznamů podle klíčového slova
                     Console.Write("Enter keyword to search: ");
                     string? keyword = Console.ReadLine();
 
@@ -204,10 +220,10 @@ class Program
                     Console.Clear();
                     break;
 
-                case "6":
+                case "6": // Odhlášení a restart aplikace
                     loggedInUser = null;
                     Console.WriteLine("🔓 Logged out.");
-                    Main();
+                    Main(); // Rekurzivní restart hlavní metody
                     return;
 
                 default:
