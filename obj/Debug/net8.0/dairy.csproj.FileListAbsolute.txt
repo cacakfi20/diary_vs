@@ -1,0 +1,14 @@
+C:\Users\user\Desktop\vysoka_skola\dairy\bin\Debug\net8.0\dairy.exe
+C:\Users\user\Desktop\vysoka_skola\dairy\bin\Debug\net8.0\dairy.deps.json
+C:\Users\user\Desktop\vysoka_skola\dairy\bin\Debug\net8.0\dairy.runtimeconfig.json
+C:\Users\user\Desktop\vysoka_skola\dairy\bin\Debug\net8.0\dairy.dll
+C:\Users\user\Desktop\vysoka_skola\dairy\bin\Debug\net8.0\dairy.pdb
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.AssemblyInfo.cs
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.dll
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\refint\dairy.dll
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.pdb
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.genruntimeconfig.cache
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\ref\dairy.dll
