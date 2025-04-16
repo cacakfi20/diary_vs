@@ -12,3 +12,4 @@ C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\refint\dairy.dll
 C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.pdb
 C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.genruntimeconfig.cache
 C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\ref\dairy.dll
+C:\Users\user\Desktop\vysoka_skola\dairy\obj\Debug\net8.0\dairy.sourcelink.json

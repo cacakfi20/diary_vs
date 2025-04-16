@@ -41,7 +41,6 @@ namespace dairy.Services
 
             if (user == null || user.Username == null)
             {
-                Console.WriteLine("❌ Invalid username or password.");
                 return "0";
             }
             return user.Username;

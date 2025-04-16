@@ -59,6 +59,8 @@ class Program
                     else
                     {
                         Console.WriteLine("❌ Invalid username or password.");
+                        diaryService.ShowFooter();
+                        Console.Clear();
                     }
                     break;
 
