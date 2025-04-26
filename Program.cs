@@ -93,7 +93,8 @@ class Program
             Console.WriteLine("3. View All Events by Date");
             Console.WriteLine("4. Delete Event by Id");
             Console.WriteLine("5. Search Entries by Keyword");
-            Console.WriteLine("6. Logout");
+            Console.WriteLine("6. Edit Event by Id");
+            Console.WriteLine("7. Logout");
             Console.Write("Choose an option: ");
             
             var choice = Console.ReadLine();
@@ -219,12 +220,75 @@ class Program
                     Console.Clear();
                     break;
 
-                case "6": // Odhlášení a restart aplikace
+                case "6": // Editace existujícího záznamu podle ID
+                    var entriesToEdit = diaryService.GetAllEntriesByUser(loggedInUser);
+                    if (entriesToEdit.Count == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("No entries to edit found.");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        diaryService.ShowHeader("Your Diary Entries");
+                        foreach (var entry in entriesToEdit)
+                        {
+                            Console.WriteLine(entry);
+                        }
+
+                        Console.Write("Enter Id of the event you want to edit: ");
+                        if (Int32.TryParse(Console.ReadLine(), out int editId))
+                        {
+                            var entryToEdit = diaryService.GetEntryById(editId);
+                            if (entryToEdit == null)
+                            {
+                                Console.WriteLine("❌ Entry not found.");
+                                diaryService.ShowFooter();
+                                Console.Clear();
+                                break;
+                            }
+
+                            Console.WriteLine($"Editing Entry: {entryToEdit}");
+
+                            Console.Write("New Date (leave empty to keep current): ");
+                            string? newDateInput = Console.ReadLine();
+                            if (!string.IsNullOrWhiteSpace(newDateInput) && DateTime.TryParse(newDateInput, out DateTime newDate))
+                            {
+                                entryToEdit.Date = newDate;
+                            }
+
+                            Console.Write("New Title (leave empty to keep current): ");
+                            string? newTitle = Console.ReadLine();
+                            if (!string.IsNullOrWhiteSpace(newTitle))
+                            {
+                                entryToEdit.Title = newTitle;
+                            }
+
+                            Console.Write("New Content (leave empty to keep current): ");
+                            string? newContent = Console.ReadLine();
+                            if (!string.IsNullOrWhiteSpace(newContent))
+                            {
+                                entryToEdit.Description = newContent;
+                            }
+
+                            diaryService.UpdateEntry(entryToEdit);
+                            Console.WriteLine("✅ Entry updated.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid ID format.");
+                        }
+                    }
+                    diaryService.ShowFooter();
+                    Console.Clear();
+                    break;
+
+                case "7": // Odhlášení a restart aplikace
                     loggedInUser = null;
                     Console.WriteLine("🔓 Logged out.");
                     Main(); // Rekurzivní restart hlavní metody
                     return;
-
+                
                 default:
                     Console.WriteLine("Invalid option.");
                     break;

@@ -12,6 +12,8 @@ namespace dairy.Interfaces
         List<DiaryEntry> GetEntriesByDate(string user);
         List<DiaryEntry> GetAllEntriesByUser(string user);
         List<DiaryEntry> SearchEntriesByKeyword(string user, string keyword);
+        DiaryEntry GetEntryById(int id);
+        void UpdateEntry(DiaryEntry entry);
         void DeleteEntry(int id);
         void ShowHeader(string title);
         void ShowFooter();

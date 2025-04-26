@@ -117,5 +117,29 @@ namespace dairy.Services
                     (!string.IsNullOrEmpty(entry.Description) && entry.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase)))
                 .ToList();
         }
+
+        public DiaryEntry GetEntryById(int id)
+        {
+            var entries = GetAllEntries();
+            var entry = entries.FirstOrDefault(e => e.Id == id);
+            return entry;
+        }
+
+        public void UpdateEntry(DiaryEntry entry)
+        {
+            var entries = GetAllEntries();
+            var existingEntry = entries.FirstOrDefault(e => e.Id == entry.Id);
+
+            if (existingEntry != null)
+            {
+                // Aktualizace existujícího záznamu
+                existingEntry.User = entry.User;
+                existingEntry.Date = entry.Date;
+                existingEntry.Title = entry.Title;
+                existingEntry.Description = entry.Description;
+
+                CsvHelper.WriteCsv(_filePath, entries);
+            }
+        }
     }
 }
