@@ -22,7 +22,7 @@ namespace dairy.Utilities
             foreach (var line in lines)
             {
                 // Rozdělení řádku podle čárek
-                var parts = line.Split(',');
+                var parts = line.Split(';');
 
                 // Kontrola minimálního počtu sloupců
                 if (parts.Length < 4) continue;
@@ -45,10 +45,10 @@ namespace dairy.Utilities
         public static void WriteCsv(string filePath, List<DiaryEntry> entries)
         {
             // Vytvoření hlavičky CSV
-            var lines = new List<string> { "Id,User,Date,Title,Content" };
+            var lines = new List<string> { "Id;User;Date;Title;Content" };
 
             // Převod jednotlivých záznamů na řádky CSV
-            lines.AddRange(entries.Select(e => $"{e.Id},{e.User},{e.Date},{e.Title},{e.Description}"));
+            lines.AddRange(entries.Select(e => $"{e.Id};{e.User};{e.Date};{e.Title};{e.Description}"));
 
             // Přepsání celého souboru novými daty
             File.WriteAllLines(filePath, lines);

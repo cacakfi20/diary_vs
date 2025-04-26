@@ -1,7 +1,7 @@
-Id,User,Date,Title,Content
-2,caci,10.04.2025 11:19:47,zkouska,ekonomika
-4,rozic,20.02.2025 0:00:00,rande,s tim kokotem
-5,user,11.04.2025 13:11:29,Moje laska cislo 3,Mu milovany Macim pes cislo svkely 6546
-6,user,11.04.2025 13:14:52,Skola hodina,Musim udelat projekt
-7,rozic,20.05.2025 0:00:00,stavba,idk
-8,rozic,17.04.2025 0:00:00,narozeniny,petr
+Id;User;Date;Title;Content
+2;caci;10.04.2025 11:19:47;zkouska;ekonomika
+4;rozic;20.02.2025 0:00:00;rande;s tim kokotem
+5;user;11.04.2025 13:11:29;Moje laska cislo 3;Mu milovany Macim pes cislo svkely 6546
+6;user;11.04.2025 13:14:52;Skola hodina;Musim udelat projekt
+7;rozic;20.05.2025 0:00:00;stavba;idk
+8;rozic;17.04.2025 0:00:00;narozeniny;petr

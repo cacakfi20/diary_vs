@@ -28,7 +28,7 @@ namespace dairy.Services
             // Vytvoření CSV souboru s hlavičkou, pokud neexistuje
             if (!File.Exists(_filePath))
             {
-                File.WriteAllText(_filePath, "Id,Date,Title,Content\n");
+                File.WriteAllText(_filePath, "Id;User;Date;Title;Content\n");
             }
         }
 
@@ -36,7 +36,7 @@ namespace dairy.Services
         public void AddEntry(DiaryEntry entry)
         {
             entry.Id = GetNextId(); // Automatické přidělení ID
-            string csvLine = $"{entry.Id},{entry.User},{entry.Date},{entry.Title},{entry.Description}";
+            string csvLine = $"{entry.Id};{entry.User};{entry.Date};{entry.Title};{entry.Description}";
             File.AppendAllText(_filePath, csvLine + Environment.NewLine);
         }
 

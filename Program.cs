@@ -214,7 +214,6 @@ class Program
                         {
                             Console.WriteLine(entry);
                         }
-                        diaryService.ShowFooter();
                     }
                     diaryService.ShowFooter();
                     Console.Clear();

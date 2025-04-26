@@ -35,7 +35,7 @@ namespace dairy.Services
             string hashedPassword = HashHelper.HashPassword(password);
 
             // Přidání nového uživatele do CSV souboru
-            File.AppendAllText(_userFilePath, $"{username},{hashedPassword}\n");
+            File.AppendAllText(_userFilePath, $"{username};{hashedPassword}\n");
 
             Console.WriteLine("✅ Registration successful!");
             return true;
@@ -70,7 +70,7 @@ namespace dairy.Services
                 .Skip(1) // přeskočí hlavičku
                 .Select(line =>
                 {
-                    var parts = line.Split(',');
+                    var parts = line.Split(';');
                     return new User { Username = parts[0], HashedPassword = parts[1] };
                 }).ToList();
         }
